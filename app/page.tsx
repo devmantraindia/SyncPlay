@@ -217,4 +217,108 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold mb-4">
+              Frequently Asked{' '}
+              <span className="gradient-text">Questions</span>
+            </h2>
+          </motion.div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={faq.question}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card hover={false}>
+                  <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
+                  <p className="text-white/60">{faq.answer}</p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="glass p-12 rounded-2xl glow"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Ready to start watching together?
+            </h2>
+            <p className="text-lg text-white/60 mb-8">
+              Create your first room and invite friends to join the fun.
+            </p>
+            <Link href="/room/create">
+              <Button size="lg" leftIcon={<Play className="w-5 h-5" />}>
+                Get Started Free
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/5 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+                  <Play className="w-4 h-4 text-white" fill="currentColor" />
+                </div>
+                <span className="font-bold gradient-text">DevMantra SyncPlay</span>
+              </div>
+              <p className="text-white/60 text-sm">
+                Synchronized video watching for everyone.
+              </p>
+            </div>
+            
+            {[
+              {
+                title: 'Product',
+                links: ['Features', 'Pricing', 'Changelog', 'Documentation'],
+              },
+              {
+                title: 'Company',
+                links: ['About', 'Blog', 'Careers', 'Contact'],
+              },
+              {
+                title: 'Legal',
+                links: ['Privacy', 'Terms', 'Security', 'Cookies'],
+              },
+            ].map(section => (
+              <div key={section.title}>
+                <h4 className="font-semibold mb-4">{section.title}</h4>
+                <ul className="space-y-2">
+                  {section.links.map(link => (
+                    <li key={link}>
+                      <a href="#" className="text-white/60 hover:text-white text-sm transition-colors">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          
+          <div className="border-t border-white/5 pt-8 text-center text-sm text-white/40">
+            <p>&copy; 2024 DevMantra SyncPlay. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
